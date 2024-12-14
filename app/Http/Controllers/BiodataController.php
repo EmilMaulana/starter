@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Biodata;
+use Illuminate\Http\Request;
+
+class BiodataController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
+    {   
+        $activeTab = 'biodata'; // Default tab
+
+        if ($request->routeIs('akademik.*')) {
+            $activeTab = 'akademik';
+        } elseif ($request->routeIs('registrasi')) {
+            $activeTab = 'registrasi';
+        } elseif ($request->routeIs('kurikulum')) {
+            $activeTab = 'kurikulum';
+        }
+
+        return view('dashboard.biodata.index', [
+            'title' => 'Biodata Siswa',
+            'activeTab' => $activeTab,
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Biodata $biodata)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Biodata $biodata)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Biodata $biodata)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Biodata $biodata)
+    {
+        //
+    }
+}
