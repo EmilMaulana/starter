@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+// use App\Livewire\Jurusan\Kelas;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
+use App\Models\Kelas;
 
 class JurusanController extends Controller
 {
@@ -22,7 +24,17 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.admin.jurusan.create', [
+            'title' => 'Tambah Jurusan'
+        ]);
+    }
+
+    public function createKelas(Jurusan $jurusan)
+    {
+        return view('dashboard.admin.jurusan.create-kelas', [
+            'title' => 'Tambah Kelas - Jurusan ' . $jurusan->nama,
+            'jurusan' => $jurusan
+        ]);
     }
 
     /**
@@ -46,7 +58,27 @@ class JurusanController extends Controller
      */
     public function edit(Jurusan $jurusan)
     {
-        //
+        return view('dashboard.admin.jurusan.edit', [
+            'title' => 'Edit Jurusan ' . $jurusan->nama,
+            'jurusan' => $jurusan
+        ]);
+    }
+
+    public function editKelas(Jurusan $jurusan, Kelas $kelas)
+    {
+        return view('dashboard.admin.jurusan.edit-kelas', [
+            'title' => 'Edit Kelas - ' . $kelas->nama,
+            'jurusan' => $jurusan,
+            'kelas' => $kelas
+        ]);
+    }
+
+    public function kelas(Jurusan $jurusan)
+    {
+        return view('dashboard.admin.jurusan.kelas', [
+            'title' => 'Daftar Kelas Jurusan ' . $jurusan->nama,
+            'jurusan' => $jurusan
+        ]);
     }
 
     /**
@@ -62,6 +94,9 @@ class JurusanController extends Controller
      */
     public function destroy(Jurusan $jurusan)
     {
-        //
+        return view('dashboard.admin.jurusan.delete', [
+            'title' => 'Delete Jurusan ' . $jurusan->nama,
+            'jurusan' => $jurusan
+        ]);
     }
 }

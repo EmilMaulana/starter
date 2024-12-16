@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->string('nama'); // Nama kelas, misalnya "Kelas 10A"
+            $table->string('kode')->nullable(); // Nama kelas, misalnya "Kelas 10A"
             $table->foreignId('jurusan_id')->constrained('jurusans')->onDelete('cascade'); // ID jurusan yang terkait
             $table->foreignId('angkatan_id')->nullable()->constrained('angkatans')->onDelete('cascade'); // ID jurusan yang terkait
             $table->timestamps();

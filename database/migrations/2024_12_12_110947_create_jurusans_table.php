@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('jurusans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->unique(); // Nama jurusan
+            $table->string('nama'); // Nama jurusan
+            $table->string('slug')->unique(); // Nama jurusan
+            $table->string('kode')->nullable()->unique(); // Nama jurusan
             $table->timestamps();
         });
     }

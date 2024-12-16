@@ -15,11 +15,11 @@ class JurusanSeeder extends Seeder
     {
         // Data jurusan yang akan dimasukkan
         $jurusans = [
-            ['nama' => 'Teknik Komputer dan Jaringan'],
-            ['nama' => 'Rekayasa Perangkat Lunak'],
-            ['nama' => 'Teknik Kendaraan Ringan Otomotif'],
-            ['nama' => 'Seni Karawitan'],
-            ['nama' => 'Akuntansi'],
+            ['nama' => 'Teknik Komputer dan Jaringan', 'slug' => 'teknik-komputer-dan-jaringan'],
+            ['nama' => 'Rekayasa Perangkat Lunak', 'slug' => 'rekayasa-perangkat-lunak'],
+            ['nama' => 'Teknik Kendaraan Ringan Otomotif', 'slug' => 'teknik-kendaraan-ringan-otomotif'],
+            ['nama' => 'Seni Karawitan', 'slug' => 'seni-karawitan'],
+            ['nama' => 'Akuntansi', 'slug' => 'akuntansi'],
         ];
 
         // Menyisipkan data ke dalam tabel jurusan

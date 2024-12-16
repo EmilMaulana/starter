@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('assets/modules/weather-icon/css/weather-icons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/weather-icon/css/weather-icons-wind.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/prism/prism.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -54,7 +57,7 @@
                 </form>
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                        <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+                        <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1" style="z-index: 10">
                         <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title" wire:poll.5s>
@@ -98,8 +101,12 @@
                         <li class="{{ request()->routeIs('siswa.*') ? 'active' : '' }}">
                             <a class="nav-link " href="{{ route('siswa.index') }}"><i class="fas fa-user-graduate"></i> <span>Data Siswa</span></a>
                         </li>
-                        <li><a class="nav-link" href="blank.html"><i class="fas fa-building"></i> <span>Unit Akademik</span></a></li>
-                        <li><a class="nav-link" href="blank.html"><i class="fas fa-chalkboard"></i> <span>Ruang Kelas</span></a></li>
+                        <li class="{{ request()->routeIs('jurusan.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('jurusan.index') }}"><i class="fas fa-building"></i> <span>Unit Akademik</span></a>
+                        </li>
+                        <li class="{{ request()->routeIs('ruangan.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('ruangan.index') }}"><i class="fas fa-chalkboard"></i> <span>Ruang Kelas</span></a>
+                        </li>
                         <li><a class="nav-link" href="blank.html"><i class="fas fa-chalkboard-teacher"></i> <span>Data Guru</span></a></li>
                         <li class="menu-header">PRA PEMBELAJARAN</li>
                         <li><a class="nav-link" href="blank.html"><i class="fas fa-user-plus"></i> <span>Registrasi</span></a></li>
@@ -138,6 +145,40 @@
         </div>
     </div>
 
+    <!-- Script untuk menampilkan modal -->
+    @if (session()->has('message'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses!',
+                    text: '{{ session('message') }}',
+                    confirmButtonText: ' OK ',
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                    },
+                    buttonsStyling: false,
+                });
+            });
+        </script>
+    @endif
+    @if (session()->has('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    icon: 'error', // Ubah ikon menjadi error
+                    title: 'Terjadi Kesalahan!',
+                    text: '{{ session('error') }}', // Tampilkan pesan error
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        confirmButton: 'btn btn-danger',
+                    },
+                    buttonsStyling: false,
+                });
+            });
+        </script>
+    @endif
+
     <!-- General JS Scripts -->
     <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/modules/popper.js') }}"></script>
@@ -146,6 +187,7 @@
     <script src="{{ asset('assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('assets/modules/moment.min.js') }}"></script>
     <script src="{{ asset('assets/js/stisla.js') }}"></script>
+    
 
     <!-- JS Libraies -->
     <script src="{{ asset('assets/modules/simple-weather/jquery.simpleWeather.min.js') }}"></script>
@@ -157,6 +199,12 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('assets/js/page/index-0.js') }}"></script>
+
+    <!-- JS Libraies -->
+    <script src="{{ asset('assets/modules/prism/prism.js') }}"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
 
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>

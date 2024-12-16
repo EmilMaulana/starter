@@ -65,7 +65,7 @@
                 <div class="card-body">
                     <div class="table-responsive mb-3">
                         <table class="table table-striped rounded mb-0">
-                            <thead class="table-light">
+                            <thead class="table-bordered">
                                 <tr class="text-nowrap">
                                     <th>No</th>
                                     <th>Nama Lengkap</th>
@@ -79,7 +79,7 @@
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table-bordered">
                                 @forelse($siswa as $index => $user)
                                 <tr class="text-nowrap">
                                     <td>{{ $index + 1 }}</td>

@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('angkatans', function (Blueprint $table) {
+        Schema::create('ruang_kelas', function (Blueprint $table) {
             $table->id();
-            $table->string('tahun'); // Kolom untuk tahun angkatan
+            $table->string('nama_ruang')->unique(); // Nama ruang kelas
+            $table->integer('kapasitas'); // Kapasitas ruang kelas
+            $table->string('kode_ruang')->unique(); // Kode unik untuk ruang kelas
+            $table->text('deskripsi')->nullable(); // Deskripsi ruang kelas (opsional)
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('angkatans');
+        Schema::dropIfExists('ruang_kelas');
     }
 };

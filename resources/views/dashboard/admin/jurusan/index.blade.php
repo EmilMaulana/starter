@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="section-header">
-        <h1>Biodata Siswa</h1>
+        <h1>Unit Akademik</h1>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -10,37 +10,25 @@
                 <div class="card-body">
                     <ul class="nav nav-pills nav-fill custom-tabs">
                         <li class="nav-item px-2 py-2">
-                            <a class="nav-link active" id="tab-biodata-link" href="#content-biodata">Biodata</a>
+                            <a class="nav-link active" id="tab-jurusan-link" href="#content-jurusan">Jurusan</a>
                         </li>
                         <li class="nav-item px-2 py-2">
-                            <a class="nav-link" id="tab-akademik-link" href="#content-akademik">Akademik</a>
-                        </li>
-                        <li class="nav-item px-2 py-2">
-                            <a class="nav-link" id="tab-registrasi-link" href="#content-registrasi">Registrasi</a>
-                        </li>
-                        <li class="nav-item px-2 py-2">
-                            <a class="nav-link" id="tab-kurikulum-link" href="#content-kurikulum">Kurikulum</a>
+                            <a class="nav-link" id="tab-angkatan-link" href="#content-angkatan">Angkatan</a>
                         </li>
                     </ul>                    
                 </div>     
             </div>
         </div>
     </div>
-    
+
 
     {{-- Konten dinamis sesuai tab yang diklik --}}
     <div class="row">
-        <div class="col-md-12" id="content-biodata">
-            @livewire('biodata.biodata')
+        <div class="col-md-12" id="content-jurusan">
+            @livewire('jurusan.index')
         </div>
-        <div class="col-md-12 d-none" id="content-akademik">
-            @livewire('biodata.akademik')
-        </div>
-        <div class="col-md-12 d-none" id="content-registrasi">
-            @livewire('biodata.registrasi')
-        </div>
-        <div class="col-md-12 d-none" id="content-kurikulum">
-            @livewire('biodata.kurikulum')
+        <div class="col-md-12 d-none" id="content-angkatan">
+            @livewire('angkatan.index')
         </div>
     </div>
 
@@ -75,10 +63,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             const tabs = document.querySelectorAll('.nav-link');
             const contents = {
-                'tab-biodata-link': 'content-biodata',
-                'tab-akademik-link': 'content-akademik',
-                'tab-registrasi-link': 'content-registrasi',
-                'tab-kurikulum-link': 'content-kurikulum',
+                'tab-jurusan-link': 'content-jurusan',
+                'tab-angkatan-link': 'content-angkatan',
             };
 
             tabs.forEach(tab => {
@@ -100,4 +86,5 @@
             });
         });
     </script>
+    {{-- @livewire('jurusan.index') --}}
 @endsection

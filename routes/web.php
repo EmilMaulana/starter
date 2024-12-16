@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\RuangKelasController;
 use App\Livewire\BiodataComponent;
 use App\Livewire\AkademikComponent;
 use App\Livewire\RegistrasiComponent;
@@ -37,7 +38,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/data-siswa/export', [SiswaController::class, 'index'])->name('siswa.export');
 
     Route::get('/unit-akademik', [JurusanController::class, 'index'])->name('jurusan.index');
+    Route::get('/unit-akademik/create', [JurusanController::class, 'create'])->name('jurusan.create');
+    Route::get('/unit-akademik/{jurusan:slug}/edit', [JurusanController::class, 'edit'])->name('jurusan.edit');
+    Route::get('/unit-akademik/{jurusan:slug}/kelas', [JurusanController::class, 'kelas'])->name('jurusan.kelas');
+    Route::get('/unit-akademik/{jurusan:slug}/kelas/create', [JurusanController::class, 'createKelas'])->name('jurusan.kelas.create');
+    Route::get('/unit-akademik/{jurusan:slug}/{kelas:id}/edit', [JurusanController::class, 'editKelas'])->name('jurusan.kelas.edit');
+    Route::get('/unit-akademik/{jurusan:slug}/delete', [JurusanController::class, 'destroy'])->name('jurusan.delete');
 
+    Route::get('/ruang-kelas', [RuangKelasController::class, 'index'])->name('ruangan.index');
+    Route::get('/ruang-kelas/create', [RuangKelasController::class, 'create'])->name('ruangan.create');
+    Route::get('/ruang-kelas/{ruang_kelas:kode_ruang}/edit', [RuangKelasController::class, 'edit'])->name('ruangan.edit');
 
 });
 
