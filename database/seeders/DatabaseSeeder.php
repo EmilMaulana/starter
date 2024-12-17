@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AngkatanSeeder::class);
         $this->call(MapelSeeder::class);
         $this->call(KelasSeeder::class);
+        $this->call(GuruSeeder::class);
+        
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',

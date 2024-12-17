@@ -13,6 +13,9 @@ class MapelController extends Controller
     public function index()
     {
         //
+        return view('dashboard.admin.mapel.index', [
+            'title' => 'Daftar Mata Pelajaran',
+        ]);
     }
 
     /**
@@ -20,7 +23,9 @@ class MapelController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.admin.mapel.create', [
+            'title' => 'Tambah Mata Pelajaran',
+        ]);
     }
 
     /**

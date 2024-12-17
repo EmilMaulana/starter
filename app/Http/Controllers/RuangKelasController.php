@@ -65,8 +65,11 @@ class RuangKelasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RuangKelas $ruangKelas)
+    public function delete(RuangKelas $ruangKelas)
     {
-        //
+        return view('dashboard.admin.ruang.delete', [
+            'title' => 'Delete Ruang Kelas - ' . $ruangKelas->nama_ruang,
+            'ruangkelas' => $ruangKelas
+        ]);
     }
 }

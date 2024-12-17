@@ -33,7 +33,7 @@
                                             <a href="{{ route('ruangan.edit', $ruangkelas->kode_ruang) }}" class="btn btn-info">
                                                 <i class="fas fa-pen"></i>
                                             </a>                                        
-                                            <a href="{{ route('ruangan.edit', $ruangkelas->kode_ruang) }}" class="btn btn-danger">
+                                            <a href="{{ route('ruangan.delete', $ruangkelas->kode_ruang) }}" class="btn btn-danger">
                                                 <i class="fas fa-trash"></i>
                                             </a>                                        
                                         </td>

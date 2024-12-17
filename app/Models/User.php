@@ -17,10 +17,8 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+        'id',
     ];
 
     /**
@@ -67,6 +65,12 @@ class User extends Authenticatable
     public function biodata()
     {
         return $this->hasOne(Biodata::class, 'user_id');
+    }
+
+    // Relasi ke model Guru
+    public function guru()
+    {
+        return $this->hasOne(Guru::class);
     }
 
 }

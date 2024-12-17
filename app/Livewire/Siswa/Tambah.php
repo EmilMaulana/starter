@@ -8,6 +8,7 @@ use App\Models\Angkatan as ModelAngkatan;
 use App\Models\Kelas as ModelKelas;
 use App\Models\Biodata as ModelBiodata;
 use App\Models\User as ModelUser;
+use Illuminate\Support\Facades\Hash;
 
 
 class Tambah extends Component
@@ -36,7 +37,7 @@ class Tambah extends Component
         $user = ModelUser::create([
             'name' => $this->name,
             'email' => strtolower(str_replace(' ', '.', $this->nis)) . '@siakad.com', // Email default
-            'password' => bcrypt('password'), // Password default
+            'password' => Hash::make($this->nis), // Password default
         ]);
 
         // Simpan data ke tabel biodata

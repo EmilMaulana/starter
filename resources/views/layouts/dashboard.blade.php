@@ -84,10 +84,10 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="/">Stisla</a>
+                        <a href="/">SIAKAD</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="/">St</a>
+                        <a href="/">LMS</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
@@ -107,8 +107,19 @@
                         <li class="{{ request()->routeIs('ruangan.*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('ruangan.index') }}"><i class="fas fa-chalkboard"></i> <span>Ruang Kelas</span></a>
                         </li>
-                        <li><a class="nav-link" href="blank.html"><i class="fas fa-chalkboard-teacher"></i> <span>Data Guru</span></a></li>
+                        <li class="{{ request()->routeIs('guru.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('guru.index') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Data Guru</span></a>
+                        </li>
                         <li class="menu-header">PRA PEMBELAJARAN</li>
+                        <li class="{{ request()->routeIs('mapel.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('mapel.index') }}"><i class="fas fa-book"></i> <!-- Ikon untuk Mata Pelajaran --><span>Mata Pelajaran</span></a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="blank.html"><i class="fas fa-th-list"></i> <!-- Ikon untuk Kurikulum --><span>Kurikulum</span></a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="blank.html"><i class="fas fa-chalkboard-teacher"></i> <!-- Ikon untuk Manajemen Kelas --><span>Manajemen Kelas</span></a>
+                        </li>                        
                         <li><a class="nav-link" href="blank.html"><i class="fas fa-user-plus"></i> <span>Registrasi</span></a></li>
                         <li><a class="nav-link" href="blank.html"><i class="fas fa-book-open"></i> <span>Rencana Studi</span></a></li>
                         <li class="menu-header">PEMBELAJARAN</li>

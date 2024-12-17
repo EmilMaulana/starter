@@ -27,6 +27,7 @@ class Index extends Component
         $kelas = Kelas::all();
 
         $siswa = User::with('biodata.angkatan', 'biodata.jurusan', 'biodata.kelas')
+            ->where('role_id', '=', 7) // Menambahkan kondisi untuk role_id
             ->when($this->angkatanId, function ($query) {
                 $query->whereHas('biodata', function ($q) {
                     $q->where('angkatan_id', $this->angkatanId);
