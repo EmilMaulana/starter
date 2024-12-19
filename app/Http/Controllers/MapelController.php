@@ -49,7 +49,10 @@ class MapelController extends Controller
      */
     public function edit(Mapel $mapel)
     {
-        //
+        return view('dashboard.admin.mapel.edit', [
+            'title' => 'Edit Mata Pelajaran - ' . $mapel->nama,
+            'mapel' => $mapel,
+        ]);
     }
 
     /**
@@ -66,5 +69,12 @@ class MapelController extends Controller
     public function destroy(Mapel $mapel)
     {
         //
+    }
+
+    public function import()
+    {
+        return view('dashboard.admin.mapel.import', [
+            'title' => 'Import Mata Pelajaran',
+        ]);
     }
 }

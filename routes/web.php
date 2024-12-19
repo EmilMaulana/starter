@@ -7,6 +7,8 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\RuangKelasController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\MapelController;
 
 Route::get('/', function () {
@@ -68,8 +70,28 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', [MapelController::class, 'create'])->name('create');
         Route::get('/import', [MapelController::class, 'import'])->name('import');
         Route::get('/export', [MapelController::class, 'export'])->name('export');
-        Route::get('/{guru:nip}/edit', [MapelController::class, 'edit'])->name('edit');
-        Route::get('/{guru:nip}/delete', [MapelController::class, 'destroy'])->name('delete');
+        Route::get('/{mapel:kode}/edit', [MapelController::class, 'edit'])->name('edit');
+        Route::get('/{mapel:kode}/delete', [MapelController::class, 'destroy'])->name('delete');
+        
+    });
+
+    Route::prefix('kurikulum')->name('kurikulum.')->group(function () {
+        Route::get('/', [KurikulumController::class, 'index'])->name('index');
+        Route::get('/create', [KurikulumController::class, 'create'])->name('create');
+        Route::get('/import', [KurikulumController::class, 'import'])->name('import');
+        Route::get('/export', [KurikulumController::class, 'export'])->name('export');
+        Route::get('/{mapel:kode}/edit', [KurikulumController::class, 'edit'])->name('edit');
+        Route::get('/{mapel:kode}/delete', [KurikulumController::class, 'destroy'])->name('delete');
+        Route::get('/{jurusan:kode}/{mapel:kode}/show', [KurikulumController::class, 'show'])->name('show');
+
+        
+    });
+
+    Route::prefix('manajemen-kelas')->name('kelas.')->group(function () {
+        Route::get('/', [KelasController::class, 'index'])->name('index');
+        Route::get('/create', [KelasController::class, 'create'])->name('create');
+        Route::get('/{mapel:kode}/edit', [KelasController::class, 'edit'])->name('edit');
+        Route::get('/{mapel:kode}/delete', [KelasController::class, 'destroy'])->name('delete');
         
     });
 

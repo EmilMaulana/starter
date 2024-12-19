@@ -4,13 +4,17 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form wire:submit.prevent="store">
+                    <form wire:submit.prevent="update">
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Mata Pelajaran</label>
                             <input type="text" wire:model="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan nama mata pelajaran">
                             @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
-                    
+                        <div class="mb-3">
+                            <label for="kode" class="form-label">Kode Mata Pelajaran</label>
+                            <input type="text" wire:model="kode" id="kode" class="form-control @error('kode') is-invalid @enderror" readonly>
+                            @error('kode') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
                         <div class="mb-3">
                             <label for="jurusan" class="form-label">Jurusan</label>
                             <select wire:model="jurusan_id" id="jurusan" class="form-control @error('jurusan_id') is-invalid @enderror">
@@ -57,7 +61,6 @@
                                 <option value="praktik">Praktik</option>
                                 <option value="teori dan praktik">Teori & Praktik</option>
                                 <option value="tambahan">Tambahan</option>
-
                             </select>
                             @error('jenis') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>

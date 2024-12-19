@@ -6,6 +6,8 @@ use App\Models\Jurusan;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Mapel as ModelMapel;
+use App\Exports\MapelExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -18,6 +20,16 @@ class Index extends Component
     {
         $this->jurusanId = null; // Inisialisasi dengan null
     }
+
+    public function export()
+    {
+        // Mendapatkan timestamp saat ini
+        $timestamp = now()->format('Ymd_His'); // Format: YYYYMMDD_HHMMSS
+        $filename = "DATA_MATA_PELAJARAN_{$timestamp}.xlsx"; // Menambahkan timestamp ke nama file
+
+        return Excel::download(new MapelExport(), $filename);
+    }
+
     public function render()
     {
         $jurusan = Jurusan::latest()->get();
@@ -42,4 +54,6 @@ class Index extends Component
             'jurusan' => $jurusan
         ]);
     }
+
+    
 }

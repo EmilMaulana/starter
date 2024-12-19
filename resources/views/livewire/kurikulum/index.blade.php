@@ -7,10 +7,10 @@
                     <div class=" mb-4">
                         <div class="row mt-2">
                             <!-- Search Section -->
-                            <div class="col-md-4 my-1">
+                            {{-- <div class="col-md-4 my-1">
                                 <label for="search">Cari Data</label>
                                 <input type="text" id="search" class="form-control" placeholder="[ Nama Mapel - Kode Mapel - Jurusan ]" wire:model.live="search">
-                            </div>
+                            </div> --}}
                             <div class="col-md-4 my-1">
                                 <label for="search">Filter Jurusan</label>
                                 <select wire:model.live="jurusanId" id="jurusan" class="form-control text-center">
@@ -20,13 +20,19 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-4 my-1">
+                                <label for="semester">Filter Semester</label>
+                                <select wire:model.live="semester" id="semester" class="form-control text-center">
+                                    <option value=""> - Semua Semester - </option>
+                                    @foreach($semesters as $s)
+                                        <option value="{{ $s->semester }}">{{ ucwords($s->semester) }}</option> <!-- Pastikan ini menggunakan nama semester -->
+                                    @endforeach
+                                </select>
+                            </div>                            
                             <!-- Action Buttons -->
                             <div class="col-md-4 my-1">
                                 <label for="actions">Aksi</label>
                                 <div id="actions" class="d-flex flex-wrap">
-                                    <a href="{{ route('mapel.create') }}" class="btn btn-primary m-1"><i class="fas fa-plus"></i> TAMBAH</a>
-                                    {{-- <a href="{{ route('siswa.index') }}" class="btn btn-info m-1"><i class="fas fa-sync"></i> REFRESH</a> --}}
-                                    <a href="{{ route('mapel.import') }}" class="btn btn-success m-1"><i class="fas fa-file-import"></i> IMPORT</a>
                                     <button wire:click='export' class="btn btn-danger m-1"><i class="fas fa-file-export"></i> EXPORT</button>
                                 </div>
                             </div>
@@ -38,44 +44,48 @@
                             <thead class="table-bordered">
                                 <tr class="text-nowrap">
                                     <th>No</th>
+                                    <th>Ekstra</th>
                                     <th>Mata Pelajaran</th>
-                                    <th>Kode Mapel</th>
-                                    <th>Jam</th>
                                     <th>Semester</th>
-                                    <th>Jurusan</th>
                                     <th>Jenis</th>
-                                    <th>Aksi</th>
+                                    <th>Jurusan</th>
+                                    {{-- <th>Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody class="table-bordered">
-                                @forelse($mapels as $index => $mapel) 
+                                @forelse($kurikulums as $index => $kurikulum) 
                                     <tr class="text-nowrap">
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $mapel->nama ?? 'N/A' }}</td> 
-                                        <td>{{ strtoupper($mapel->kode ?? 'N/A') }}</td> 
-                                        <td>{{ $mapel->jam ?? 'N/A' }}</td> 
-                                        <td>{{ ucwords($mapel->semester ?? 'N/A') }}</td> 
-                                        <td>{{ $mapel->jurusan->nama ?? 'N/A' }}</td> 
-                                        <td>{{ ucwords($mapel->jenis ?? 'N/A') }}</td> 
                                         <td>
-                                            <a href="{{ route('mapel.edit', $mapel->kode) }}" class="btn btn-info" title="Edit">
-                                                <i class="fas fa-pen"></i>
-                                            </a>                                        
-                                            {{-- <a href="{{ route('mapel.delete', $mapel->kode) }}" class="btn btn-danger" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </a>                                         --}}
-                                        </td>
+                                            <a href="{{ route('kurikulum.show', ['jurusan' => $kurikulum->jurusan->kode, 'mapel' => $kurikulum->kode]) }}" class="btn btn-primary"><i class="fas fa-list"></i></a>
+                                        </td> 
+                                        <td>
+                                            <div class="row align-items-center "> <!-- Menambahkan align-items-center untuk vertikal center -->
+                                                <div class="col">
+                                                    {{ $kurikulum->nama ?? 'N/A' }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-auto"> <!-- Menggunakan col-auto untuk badge -->
+                                                    <span class="badge badge-secondary">{{ $kurikulum->jam ?? 'N/A'}} Jam</span>
+                                                    <span class="badge badge-info">{{ strtoupper($kurikulum->kode ?? 'N/A') }}</span>
+                                                </div>
+                                            </div>
+                                        </td> 
+                                        <td>{{ ucwords($kurikulum->semester ?? 'N/A') }}</td> 
+                                        <td>{{ ucwords($kurikulum->jenis ?? 'N/A') }}</td> 
+                                        <td>{{ $kurikulum->jurusan->nama ?? 'N/A' }}</td> 
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center ">Tidak ada data mata pelajaran yang ditemukan.</td> <!-- Perbaiki pesan -->
+                                        <td colspan="6" class="text-center ">Tidak ada data kurikulum yang ditemukan.</td> <!-- Perbaiki pesan -->
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
                     <div class="mt-3"> <!-- Tambahkan margin atas untuk pemisahan -->
-                        {{ $mapels->links() }} <!-- Memanggil links() untuk pagination -->
+                        {{ $kurikulums->links() }} <!-- Memanggil links() untuk pagination -->
                     </div>                    
                 </div>
             </div>

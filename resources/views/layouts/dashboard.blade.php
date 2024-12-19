@@ -114,11 +114,11 @@
                         <li class="{{ request()->routeIs('mapel.*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('mapel.index') }}"><i class="fas fa-book"></i> <!-- Ikon untuk Mata Pelajaran --><span>Mata Pelajaran</span></a>
                         </li>
-                        <li>
-                            <a class="nav-link" href="blank.html"><i class="fas fa-th-list"></i> <!-- Ikon untuk Kurikulum --><span>Kurikulum</span></a>
+                        <li class="{{ request()->routeIs('kurikulum.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('kurikulum.index') }}"><i class="fas fa-th-list"></i> <!-- Ikon untuk Kurikulum --><span>Kurikulum</span></a>
                         </li>
-                        <li>
-                            <a class="nav-link" href="blank.html"><i class="fas fa-chalkboard-teacher"></i> <!-- Ikon untuk Manajemen Kelas --><span>Manajemen Kelas</span></a>
+                        <li class="{{ request()->routeIs('kelas.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('kelas.index') }}"><i class="fas fa-chalkboard-teacher"></i> <!-- Ikon untuk Manajemen Kelas --><span>Manajemen Kelas</span></a>
                         </li>                        
                         <li><a class="nav-link" href="blank.html"><i class="fas fa-user-plus"></i> <span>Registrasi</span></a></li>
                         <li><a class="nav-link" href="blank.html"><i class="fas fa-book-open"></i> <span>Rencana Studi</span></a></li>

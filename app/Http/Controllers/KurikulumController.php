@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
+use App\Models\Mapel;
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
-class KelasController extends Controller
+class KurikulumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,8 @@ class KelasController extends Controller
     public function index()
     {
         //
-        return view('dashboard.admin.kelas.index', [
-            'title' => 'Manajemen Kelas'
+        return view('dashboard.admin.kurikulum.index', [
+            'title' => 'Daftar Kurikulum'
         ]);
     }
 
@@ -37,15 +38,19 @@ class KelasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kelas $kelas)
+    public function show( Jurusan $jurusan, Mapel $mapel)
     {
-        //
+        return view('dashboard.admin.kurikulum.show', [
+            'title' => $jurusan->nama . ' - ' . ucwords($mapel->nama),
+            'mapel' => $mapel,
+            'jurusan' => $jurusan
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kelas $kelas)
+    public function edit(string $id)
     {
         //
     }
@@ -53,7 +58,7 @@ class KelasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -61,7 +66,7 @@ class KelasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kelas $kelas)
+    public function destroy(string $id)
     {
         //
     }

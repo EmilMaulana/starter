@@ -5,9 +5,8 @@ namespace App\Livewire\Mapel;
 use Livewire\Component;
 use App\Models\Jurusan;
 use App\Models\Mapel as ModelMapel;
-use Illuminate\Support\Str;
 
-class Create extends Component
+class Edit extends Component
 {
     public $nama;
     public $kode;
@@ -18,16 +17,25 @@ class Create extends Component
     public $jurusan; // Untuk menyimpan daftar jurusan
     public $semester; // Untuk menyimpan daftar jurusan
 
-    public function mount()
+    public function mount(ModelMapel $mapel)
     {
         $this->jurusan = Jurusan::all(); // Ambil semua jurusan
+        $this->nama = $mapel->nama;
+        $this->kode = $mapel->kode;
+        $this->jurusan_id = $mapel->jurusan_id;
+        $this->deskripsi = $mapel->deskripsi;
+        $this->jam = $mapel->jam;
+        $this->jenis = $mapel->jenis;
+        $this->semester = $mapel->semester;
+
     }
 
-    public function store()
+    public function update()
     {
         // Validasi data
         $this->validate([
             'nama' => 'required|string|max:255',
+            'kode' => 'nullable|string|max:10',
             'jurusan_id' => 'required|exists:jurusans,id',
             'deskripsi' => 'nullable|string|max:500', // Validasi deskripsi
             'jam' => 'required|integer|min:1', // Validasi jam
@@ -35,15 +43,12 @@ class Create extends Component
             'semester' => 'required|string|max:10', // Validasi semester
         ]);
 
-        // Generate kode mata pelajaran yang unik
-        do {
-            $this->kode = 'MP' . Str::random(3); // Menghasilkan kode dengan awalan "MP" dan 3 karakter acak
-        } while (ModelMapel::where('kode', $this->kode)->exists()); // Cek apakah kode sudah ada
+        // Temukan mata pelajaran berdasarkan kode
+        $mapel = ModelMapel::where('kode', $this->kode)->firstOrFail();
 
-        // Simpan data mata pelajaran
-        ModelMapel::create([
+        // Update data mata pelajaran
+        $mapel->update([
             'nama' => $this->nama,
-            'kode' => $this->kode,
             'jurusan_id' => $this->jurusan_id,
             'deskripsi' => $this->deskripsi,
             'jam' => $this->jam,
@@ -51,17 +56,15 @@ class Create extends Component
             'semester' => $this->semester,
         ]);
 
-        return redirect()->route('mapel.index')->with('message', 'Mata pelajaran berhasil ditambahkan!');
-        // Reset form setelah menyimpan
-        $this->reset();
+        // Redirect ke halaman indeks dengan pesan sukses
+        return redirect()->route('mapel.index')->with('message', 'Mata pelajaran berhasil diperbarui!');
     }
-
 
 
     public function render()
     {
-        return view('livewire.mapel.create', [
-            'jurusan' => Jurusan::latest()->get()
+        return view('livewire.mapel.edit', [
+            
         ]);
     }
 }

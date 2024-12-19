@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('jam'); // Jumlah jam pelajaran
             $table->string('semester'); // Semester di mana mata pelajaran diajarkan
             $table->foreignId('jurusan_id'); // ID jurusan yang menawarkan mata pelajaran
-            $table->enum('jenis', ['teori', 'praktik', 'teori dan praktik']); // Jenis mata pelajaran
+            $table->string('jenis'); // Jenis mata pelajaran
             $table->timestamps();
         });
     }
