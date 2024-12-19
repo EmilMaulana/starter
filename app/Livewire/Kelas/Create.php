@@ -1,19 +1,22 @@
 <?php
 
-namespace App\Livewire\Jurusan;
+namespace App\Livewire\Kelas;
 
 use Livewire\Component;
-use App\Models\Jurusan as ModelJurusan;
-use App\Models\Angkatan as ModelAngkatan;
-use App\Models\Kelas as ModelKelas;
+use App\Models\Jurusan;
+use App\Models\Angkatan;
+use App\Models\Kelas as ModelKelas; // Pastikan Anda mengimpor model Kelas
 use Illuminate\Support\Str;
 
-class CreateKelas extends Component
+class Create extends Component
 {
-    public $jurusan, $nama, $kode, $angkatan_id;
-    public function mount(ModelJurusan $jurusan)
+    public $jurusan, $angkatan, $nama, $kode, $angkatan_id, $jurusan_id;
+
+    public function mount()
     {
-        $this->jurusan = $jurusan;
+        // Ambil semua jurusan dan angkatan dari database
+        $this->jurusan = Jurusan::latest()->get(); // Pastikan ini tidak null
+        $this->angkatan = Angkatan::latest()->get(); // Pastikan ini tidak null
     }
 
     public function store()
@@ -22,6 +25,7 @@ class CreateKelas extends Component
         $this->validate([
             'nama' => 'required|string|max:255',
             'angkatan_id' => 'required|exists:angkatans,id',
+            'jurusan_id' => 'required|exists:jurusans,id',
         ]);
 
         // Generate kode kelas
@@ -32,11 +36,11 @@ class CreateKelas extends Component
             'nama' => $this->nama,
             'kode' => $kode, // Gunakan kode yang dihasilkan
             'angkatan_id' => $this->angkatan_id,
-            'jurusan_id' => $this->jurusan->id, // Ambil ID jurusan dari objek jurusan
+            'jurusan_id' => $this->jurusan_id, // Ambil ID jurusan dari objek jurusan
         ]);
 
-        session()->flash('message', 'Kelas berhasil ditambahkan!');
-        return redirect()->route('jurusan.kelas', ['jurusan' => $this->jurusan->slug]);
+        session()->flash('message', 'Data Kelas berhasil ditambahkan!');
+        return redirect()->route('kelas.index');
     }
 
     private function generateKodeKelas()
@@ -51,8 +55,7 @@ class CreateKelas extends Component
 
     public function render()
     {
-        return view('livewire.jurusan.create-kelas', [
-            'angkatan' => ModelAngkatan::all(),
-        ]);
+        return view('livewire.kelas.create');
     }
+
 }

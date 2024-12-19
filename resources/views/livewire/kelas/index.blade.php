@@ -1,33 +1,19 @@
 <div>
-    {{-- Nothing in the world is as soft and yielding as water. --}}
-    
-    {{-- <div class="section-header">
-        <h1>Daftar Kelas - Jurusan {{ $jurusan->nama }}</h1>
-    </div> --}}
-    {{-- <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="tab-content py-0">
-                        <h6 class="text-uppercase bg-abu text-abu p-2 rounded text-center">Daftar Kelas - Jurusan {{ $jurusan->nama }}</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-md-2 mb-4 mt-4">
+                    <div class="row justify-content-center align-items-center mt-2">
+                        <div class="col-md-5 mb-4">
+                            <input type="text" id="search" class="form-control" placeholder="[ Cari Nama Kelas ]" wire:model.live="search">
+                        </div>
+                        <div class="col-md-3 mb-4 d-flex "> <!-- Menggunakan d-flex untuk sejajar -->
                             <a href="{{ route('kelas.create') }}" class="btn btn-primary mr-2"><i class="fas fa-plus"></i> TAMBAH</a>
+                            <a href="{{ route('kelas.index') }}" class="btn btn-info"><i class="fas fa-sync"></i> REFRESH</a>
                         </div>
-                        <div class="col-md-4 mb-4">
-                            <label for="search">Cari Data</label>
-                            <input type="text" id="search" class="form-control" placeholder="[ Nama Kelas ]" wire:model.live="search">
-                        </div>
-                        <div class="col-md-3 mb-4">
+                    </div>                    
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 mb-4">
                             <label for="search">Filter Angkatan</label>
                             <select wire:model.live="angkatan" id="angkatan" class="form-control text-center">
                                 <option value=""> - Semua Angkatan - </option>
@@ -36,7 +22,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3 mb-4">
+                        <div class="col-md-5 mb-4">
                             <label for="search">Filter Jurusan</label>
                             <select wire:model.live="jurusanId" id="jurusanId" class="form-control text-center">
                                 <option value=""> - Semua Jurusan - </option>
@@ -45,10 +31,16 @@
                                 @endforeach
                             </select>
                         </div>
-                        
                     </div>
-                    
-                    <div class="table-responsive mb-3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive my-3">
                         <table class="table table-striped rounded mb-0">
                             <thead class="table-bordered">
                                 <tr>

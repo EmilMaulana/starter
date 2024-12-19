@@ -23,7 +23,9 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.admin.kelas.create', [
+            'title' => 'Tambah Kelas'
+        ]);
     }
 
     /**

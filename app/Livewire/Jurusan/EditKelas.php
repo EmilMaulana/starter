@@ -52,7 +52,7 @@ class EditKelas extends Component
     {
         do {
             // Generate kode acak dengan panjang 8 karakter
-            $kode = 'KLS-' . Str::random(6);
+            $kode = 'KLS' . Str::random(4);
         } while (ModelKelas::where('kode', $kode)->exists()); // Pastikan kode unik
 
         return $kode; // Kembalikan kode yang unik
