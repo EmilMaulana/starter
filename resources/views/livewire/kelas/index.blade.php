@@ -45,27 +45,27 @@
                             <thead class="table-bordered">
                                 <tr>
                                     <th>No</th>
+                                    <th>Ekstra</th>
                                     <th>Nama Kelas</th>
                                     <th>Kode Kelas</th>
                                     <th>Jurusan</th>
                                     <th>Angkatan</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="table-bordered">
                                 @forelse($kelass as $index => $kelasItem)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
+                                        <td>
+                                            <a href="{{ route('kelas.siswa', $kelasItem->kode) }}" class="btn  btn-primary"><i class="fas fa-bars"></i></a>
+                                            <a href="{{ route('kelas.edit', $kelasItem->kode) }}" class="btn btn-info">
+                                                <i class="fas fa-pen"></i>
+                                            </a>                                        
+                                        </td>
                                         <td>{{ $kelasItem->nama ?? 'N/A'}}</td>
                                         <td>{{ strtoupper($kelasItem->kode ?? 'N/A') }}</td>
                                         <td>{{ $kelasItem->jurusan->nama ?? 'N/A'}}</td>
                                         <td>{{ $kelasItem->angkatan->tahun ?? 'N/A'}}</td>
-                                        <td>
-                                            <a href="{{ route('kelas.edit', $kelasItem->id) }}" class="btn btn-info">
-                                                <i class="fas fa-pen"></i>
-                                            </a>                                        
-                                            {{-- <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a> --}}
-                                        </td>
                                     </tr>
                                 @empty
                                     <tr>

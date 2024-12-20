@@ -90,8 +90,12 @@ Route::middleware('auth')->group(function () {
     Route::prefix('manajemen-kelas')->name('kelas.')->group(function () {
         Route::get('/', [KelasController::class, 'index'])->name('index');
         Route::get('/create', [KelasController::class, 'create'])->name('create');
-        Route::get('/{mapel:kode}/edit', [KelasController::class, 'edit'])->name('edit');
-        Route::get('/{mapel:kode}/delete', [KelasController::class, 'destroy'])->name('delete');
+        Route::get('/{kelas:kode}/edit', [KelasController::class, 'edit'])->name('edit');
+        Route::get('/{kelas:kode}/siswa', [KelasController::class, 'siswa'])->name('siswa');
+        Route::get('/{kelas:kode}/delete', [KelasController::class, 'destroy'])->name('delete');
+        Route::get('/{kelas:kode}/siswa/create', [KelasController::class, 'createSiswa'])->name('siswa.create');
+        Route::get('/{kelas:kode}/siswa/import', [KelasController::class, 'importSiswa'])->name('siswa.import');
+
         
     });
 

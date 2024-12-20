@@ -4,23 +4,12 @@
     <div class="section-header">
         <h1>Daftar Kelas - Jurusan {{ $jurusan->nama }}</h1>
     </div>
-    {{-- <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="tab-content py-0">
-                        <h6 class="text-uppercase bg-abu text-abu p-2 rounded text-center">Daftar Kelas - Jurusan {{ $jurusan->nama }}</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-3 mb-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 mb-4 d-flex">
                             <a href="{{ route('jurusan.index') }}" class="btn btn-info mr-2"><i class="fas fa-arrow-left"></i> KEMBALI</a>
                             <a href="{{ route('jurusan.kelas.create', $jurusan->slug) }}" class="btn btn-primary mr-2"><i class="fas fa-plus"></i> TAMBAH</a>
                         </div>

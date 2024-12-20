@@ -39,9 +39,20 @@ class KelasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kelas $kelas)
+    public function siswa(Kelas $kelas)
     {
-        //
+        return view('dashboard.admin.kelas.siswa', [
+            'title' => 'Daftar Siswa - ' . ' Kelas ' . $kelas->nama . ' Angkatan ' . $kelas->angkatan->tahun,
+            'kelas' => $kelas
+        ]);
+    }
+
+    public function createSiswa(Kelas $kelas)
+    {
+        return view('dashboard.admin.kelas.siswa-create', [
+            'title' => 'Tambah Data Siswa - ' . ' Kelas ' . $kelas->nama . ' Angkatan ' . $kelas->angkatan->tahun,
+            'kelas' => $kelas
+        ]);
     }
 
     /**
@@ -49,7 +60,10 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
-        //
+        return view('dashboard.admin.kelas.edit', [
+            'title' => 'Edit Kelas - ' . $kelas->nama,
+            'kelas' => $kelas
+        ]);
     }
 
     /**

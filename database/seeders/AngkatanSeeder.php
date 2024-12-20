@@ -13,8 +13,6 @@ class AngkatanSeeder extends Seeder
         $angkatan = [
             ['tahun' => 2023],
             ['tahun' => 2024],
-            ['tahun' => 2025],
-            ['tahun' => 2026],
         ];
 
         // Menyisipkan data ke tabel angkatan

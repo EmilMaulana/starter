@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Livewire\Jurusan;
+namespace App\Livewire\Kelas;
 
 use Livewire\Component;
-use App\Models\Angkatan as ModelAngkatan;
-use App\Models\Kelas as ModelKelas;
 use Illuminate\Support\Str;
+use App\Models\Angkatan as ModelAngkatan;
+use App\Models\Jurusan as ModelJurusan;
+use App\Models\Kelas as ModelKelas;
 
-class EditKelas extends Component
+class Edit extends Component
 {
-    public $jurusan, $kelas, $nama, $kode, $angkatan_id;
+    public $kelas, $nama, $kode, $angkatan_id, $jurusan_id;
 
-    public function mount($jurusan, $kelas)
+    public function mount($kelas)
     {
-        $this->jurusan = $jurusan; // Simpan objek jurusan
         $this->kelas = $kelas; // Simpan objek kelas
         $this->nama = $kelas->nama; // Ambil nama kelas
         $this->kode = $kelas->kode; // Ambil kode kelas
         $this->angkatan_id = $kelas->angkatan_id; // Ambil ID angkatan
+        $this->jurusan_id = $kelas->jurusan_id; // Ambil ID angkatan
 
     }
 
@@ -27,6 +28,7 @@ class EditKelas extends Component
         $this->validate([
             'nama' => 'required|string|max:255,' . $this->kelas->id,
             'angkatan_id' => 'required|exists:angkatans,id',
+            'jurusan_id' => 'required|exists:jurusans,id',
         ]);
 
         // Cek apakah kode kelas sudah ada
@@ -42,10 +44,11 @@ class EditKelas extends Component
             'nama' => $this->nama,
             'kode' => $kode,
             'angkatan_id' => $this->angkatan_id,
+            'jurusan_id' => $this->jurusan_id,
         ]);
 
-        session()->flash('message', 'Kelas berhasil diperbarui!');
-        return redirect()->route('jurusan.kelas', ['jurusan' => $this->jurusan->slug]);
+        session()->flash('message', 'Data Kelas berhasil diperbarui!');
+        return redirect()->route('kelas.index');
     }
 
     private function generateKodeKelas()
@@ -60,8 +63,9 @@ class EditKelas extends Component
 
     public function render()
     {
-        return view('livewire.jurusan.edit-kelas', [
-            'angkatan' => ModelAngkatan::all(),
+        return view('livewire.kelas.edit', [
+            'jurusan' => ModelJurusan::latest()->get(),
+            'angkatan' => ModelAngkatan::latest()->get(),
         ]);
     }
 }
