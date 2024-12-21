@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Angkatan;
 use App\Models\Jurusan;
 use App\Models\Kelas;
+use App\Models\Biodata;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel; 
 use App\Exports\SiswaExport;
@@ -61,6 +62,18 @@ class Index extends Component
             'kelas' => $kelas,
             'siswa' => $siswa,
         ]);
+    }
+
+    public function updateStatus($siswaId, $newStatus)
+    {
+        $biodata = Biodata::where('user_id', $siswaId)->first();
+        if ($biodata) {
+            $biodata->status_id = $newStatus;
+            $biodata->save();
+            session()->flash('message', 'Status berhasil diperbarui!');
+        } else {
+            session()->flash('error', 'Siswa tidak ditemukan!');
+        }
     }
 
     public function export()

@@ -53,6 +53,7 @@ class Tambah extends Component
             'jurusan_id' => $this->jurusan_id,
             'angkatan_id' => $this->angkatan_id,
             'kelas_id' => $this->kelas_id,
+            'status_id' => '1',
         ]);
 
         // Reset input dan tampilkan notifikasi

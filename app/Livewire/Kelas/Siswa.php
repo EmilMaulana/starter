@@ -4,6 +4,7 @@ namespace App\Livewire\Kelas;
 
 use Livewire\Component;
 use App\Models\User;
+use App\Models\Biodata;
 use Livewire\WithPagination;
 
 class Siswa extends Component
@@ -21,6 +22,19 @@ class Siswa extends Component
         $this->kelas = $kelas; 
 
     }
+
+    public function updateStatus($siswaId, $newStatus)
+    {
+        $biodata = Biodata::where('user_id', $siswaId)->first();
+        if ($biodata) {
+            $biodata->status_id = $newStatus;
+            $biodata->save();
+            session()->flash('message', 'Status berhasil diperbarui!');
+        } else {
+            session()->flash('error', 'Siswa tidak ditemukan!');
+        }
+    }
+
     public function render()
     {
         $siswa = User::with('biodata.angkatan', 'biodata.jurusan', 'biodata.kelas')

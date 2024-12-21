@@ -90,35 +90,78 @@
                                     <td>{{ $user->biodata->kelas->nama ?? 'N/A' }}</td>
                                     <td>{{ $user->biodata->angkatan->tahun ?? 'N/A' }}</td>
                                     <td>{{ $user->biodata->jurusan->nama ?? 'N/A' }}</td>
-                                    <td>
+                                    <td class="position-relative">
                                         @php
                                             $status = $user->biodata->status->status ?? 'N/A';
-                                            $badgeClass = '';
-                                    
-                                            switch ($status) {
-                                                case 'Aktif':
-                                                    $badgeClass = 'badge text-white bg-success'; // Hijau
-                                                    break;
-                                                case 'Tidak Aktif':
-                                                    $badgeClass = 'badge text-white bg-danger'; // Merah
-                                                    break;
-                                                case 'Cuti':
-                                                    $badgeClass = 'badge text-white bg-warning'; // Kuning
-                                                    break;
-                                                case 'Lulus':
-                                                    $badgeClass = 'badge text-white bg-info'; // Biru
-                                                    break;
-                                                case 'Drop Out':
-                                                    $badgeClass = 'badge text-white bg-secondary'; // Abu-abu
-                                                    break;
-                                                default:
-                                                    $badgeClass = 'badge bg-light text-dark'; // Warna default
-                                            }
+                                            $badgeClass = match ($status) {
+                                                'Aktif' => 'badge text-white bg-success',
+                                                'Tidak Aktif' => 'badge text-white bg-danger',
+                                                'Cuti' => 'badge text-white bg-warning',
+                                                'Lulus' => 'badge text-white bg-info',
+                                                'Drop Out' => 'badge text-white bg-secondary',
+                                                default => 'badge bg-light text-dark',
+                                            };
                                         @endphp
                                     
-                                        <span class="{{ $badgeClass }}">
-                                            {{ strtoupper($status) }}
-                                        </span>
+                                        <!-- Badge dengan Dropdown -->
+                                        <div class="dropdown">
+                                            <span 
+                                                class="{{ $badgeClass }} dropdown-toggle" 
+                                                id="statusDropdown{{ $user->id }}" 
+                                                data-bs-toggle="dropdown" 
+                                                aria-expanded="false" 
+                                                style="cursor: pointer;"
+                                            >
+                                                {{ strtoupper($status) }}
+                                            </span>
+                                            <ul class="dropdown-menu" aria-labelledby="statusDropdown{{ $user->id }}">
+                                                <li>
+                                                    <a 
+                                                        class="dropdown-item text-success" 
+                                                        href="#" 
+                                                        wire:click.prevent="updateStatus({{ $user->id }}, 1)"
+                                                    >
+                                                        Aktif
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a 
+                                                        class="dropdown-item text-danger" 
+                                                        href="#" 
+                                                        wire:click.prevent="updateStatus({{ $user->id }}, 2)"
+                                                    >
+                                                        Tidak Aktif
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a 
+                                                        class="dropdown-item text-warning" 
+                                                        href="#" 
+                                                        wire:click.prevent="updateStatus({{ $user->id }}, 3)"
+                                                    >
+                                                        Cuti
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a 
+                                                        class="dropdown-item text-primary" 
+                                                        href="#" 
+                                                        wire:click.prevent="updateStatus({{ $user->id }}, 4)"
+                                                    >
+                                                        Lulus
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a 
+                                                        class="dropdown-item text-secondary" 
+                                                        href="#" 
+                                                        wire:click.prevent="updateStatus({{ $user->id }}, 5)"
+                                                    >
+                                                        Drop Out
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </td>                                    
                                     <td>
                                         <a href="{{ route('siswa.show', $user->biodata->nis ?? '') }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>

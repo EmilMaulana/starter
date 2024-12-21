@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Biodata;
 use App\Models\Kelas as ModelKelas;
+use App\Models\Status;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -21,13 +22,12 @@ class SiswaCreate extends Component
 
     public function mount(ModelKelas $kelas)
     {   
-        $this->kelas= $kelas;
+        $this->kelas = $kelas;
         $this->kelas_id = $kelas->id;
         $this->angkatan_id = $kelas->angkatan_id;
         $this->jurusan_id = $kelas->jurusan_id;
 
     }
-
 
     protected $rules = [
         'name' => 'required|string|max:255',
@@ -64,16 +64,19 @@ class SiswaCreate extends Component
             'jurusan_id' => $this->jurusan_id,
             'angkatan_id' => $this->angkatan_id,
             'kelas_id' => $this->kelas_id,
+            'status_id' => '1',
         ]);
 
-        // Reset input dan tampilkan notifikasi
+        
+        return redirect()->route('kelas.siswa', ['kelas' => $this->kelas->kode])->with('message', 'Data siswa berhasil ditambahkan!');
         $this->reset();
 
-        return redirect()->route('kelas.siswa', ['kelas' => $this->kelas->kode])->with('message', 'Data siswa berhasil ditambahkan!');
     }
 
     public function render()
     {
-        return view('livewire.kelas.siswa-create');
+        return view('livewire.kelas.siswa-create', [
+            'status' => Status::all(),
+        ]);
     }
 }
