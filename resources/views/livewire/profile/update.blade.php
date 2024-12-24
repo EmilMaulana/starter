@@ -56,88 +56,19 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror" readonly id="email" wire:model="email" placeholder="Email">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" wire:model="email" placeholder="Email">
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nis">NIS</label>
-                                    <input type="text" class="form-control @error('nis') is-invalid @enderror" readonly id="nis" wire:model="nis" placeholder="NIS">
-                                    @error('nis')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="nisn">NISN</label>
-                                    <input type="text" class="form-control @error('nisn') is-invalid @enderror" readonly id="nisn" wire:model="nisn" placeholder="NISN">
-                                    @error('nisn')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="agama">Agama</label>
-                                    <select class="form-control @error('agama') is-invalid @enderror" wire:model="agama" name="agama">
-                                        <option value="">Pilih Agama</option>
-                                        <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
-                                        <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
-                                        <option value="Katolik" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
-                                        <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
-                                        <option value="Budha" {{ old('agama') == 'Budha' ? 'selected' : '' }}>Budha</option>
-                                        <option value="Konghucu" {{ old('agama') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
-                                        <!-- Tambahkan pilihan agama lainnya sesuai kebutuhan -->
-                                    </select>
-                                    @error('agama')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="jeniskelamin">Jenis Kelamin</label>
-                                    <select class="form-control @error('jeniskelamin') is-invalid @enderror" wire:model="jeniskelamin" name="jeniskelamin">
-                                        <option value="">Pilih Jenis Kelamin</option>
-                                        <option value="Laki-laki" {{ old('jeniskelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                        <option value="Perempuan" {{ old('jeniskelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                    </select>
-                                    @error('jeniskelamin')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="ttl">TTL</label>
-                                    <input type="text" class="form-control @error('ttl') is-invalid @enderror" id="ttl" wire:model="ttl" placeholder="TTL">
-                                    @error('ttl')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="nohp">No HP</label>
-                                    <input type="text" class="form-control @error('nohp') is-invalid @enderror" id="nohp" wire:model="nohp" placeholder="No HP">
-                                    @error('nohp')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="alamat">Alamat</label>
-                                    <textarea class="form-control @error('alamat') is-invalid @enderror" id="alamat" wire:model="alamat" placeholder="Alamat"></textarea>
-                                    @error('alamat')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
+                            
                         </div>
                             
                         <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> SIMPAN</button>
                         </div>
                     </form>                                 
                 </div>
