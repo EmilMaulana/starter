@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>{{ $title ?? 'SIAKAD' }}</title>
+    <title>{{ $title ?? 'ABSENSI' }}</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -95,10 +95,10 @@
                             <a href="/dashboard" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                         </li>                        
                         <li class="menu-header">DATA DASAR</li>
-                        <li class="{{ request()->routeIs('biodata', 'profile.edit') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('biodata') }}"><i class="fas fa-users"></i> <span>Biodata Siswa</span></a>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-users"></i> <span>Biodata Siswa</span></a>
                         </li> 
-                        <li class="{{ request()->routeIs('siswa.*') ? 'active' : '' }}">
+                        {{-- <li class="{{ request()->routeIs('siswa.*') ? 'active' : '' }}">
                             <a class="nav-link " href="{{ route('siswa.index') }}"><i class="fas fa-user-graduate"></i> <span>Data Siswa</span></a>
                         </li>
                         <li class="{{ request()->routeIs('jurusan.*') ? 'active' : '' }}">
@@ -119,7 +119,7 @@
                         </li>
                         <li class="{{ request()->routeIs('kelas.*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('kelas.index') }}"><i class="fas fa-chalkboard-teacher"></i> <!-- Ikon untuk Manajemen Kelas --><span>Manajemen Kelas</span></a>
-                        </li>                        
+                        </li>                         --}}
                         <li><a class="nav-link" href="blank.html"><i class="fas fa-user-plus"></i> <span>Registrasi</span></a></li>
                         <li><a class="nav-link" href="blank.html"><i class="fas fa-book-open"></i> <span>Rencana Studi</span></a></li>
                         <li class="menu-header">PEMBELAJARAN</li>
