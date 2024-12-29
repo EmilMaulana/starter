@@ -95,8 +95,8 @@
                             <a href="/dashboard" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                         </li>                        
                         <li class="menu-header">MENU</li>
-                        <li class="">
-                            <a class="nav-link" href=""><i class="fas fa-users"></i> <span>Absensi</span></a>
+                        <li class="{{ request()->routeIs('absen.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('absen.index') }}"><i class="fas fa-users"></i> <span>Absensi</span></a>
                         </li> 
                         <li class="menu-header">ADMIN</li>
                         <li><a class="nav-link" href=""><i class="fas fa-calendar-alt"></i> <span>Laporan</span></a></li>
